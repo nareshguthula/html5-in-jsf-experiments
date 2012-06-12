@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:m="http://jdevelopment.nl">
+
+<h:head>
+	<title>Localstorage demo</title>
+	<script src="js/jquery-1.7.2.js"></script>
+	<link href="css/bootstrap.css" rel="stylesheet" />
+</h:head>
+
+<h:body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a href="#" class="brand">Localstorage demo</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li class="active"><a href="#"> </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div style="clear: both; padding-top: 50px;"></div>
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<h:form>
+					<m:rememberInWebStorage fields="i1" persistence="session" />
+					
+					<h:inputText id="i1" />
+					<h:commandButton action="index" value="Submit" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

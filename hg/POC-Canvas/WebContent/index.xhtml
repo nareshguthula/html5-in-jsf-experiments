@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:m="http://jdevelopment.nl"
+	>
+<h:head>
+	<title>Canvas demo</title>
+	<script src="js/jquery-1.7.2.js"></script>
+
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<style>
+		.highlightrow_mouseover {
+			background-color: yellow;
+		}
+		
+		.highlightrow_click {
+			background-color: lightgreen;
+		}
+	</style>
+	
+</h:head>
+
+<h:body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a href="#" class="brand">Canvas demo</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li class="active"><a href="#" id=""> </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div style="clear: both; padding-top: 50px;"></div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="well">
+			
+					<h:dataTable var="point" value="#{indexBacking.allDataPoints}"
+						id="dataPointTable" columnClasses="id,name,value"
+						width="100%" style="text-align: center;">
+						<h:column>
+							<f:facet name="header">Id</f:facet>
+							#{point.id}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							#{point.name}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Value</f:facet>
+							#{point.value}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Show</f:facet>
+							<input type="checkbox" class="show" value="#{point.id}" checked="checked" />
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+			<div class="span8">
+
+				<div class="well">
+					<h:form>
+						<m:canvasgraph id="graph" table="dataPointTable" idColumn="id" valueColumn="value" visibleCheckbox="show"
+						width="1000" height="300" lineColor="red" value="#{indexBacking.value}">
+							<f:ajax event="click" render="test" />
+							<m:highlightRow event="mousemove" cssClass="highlightrow_mouseover" />
+							<m:highlightRow event="click" cssClass="highlightrow_click" />
+							Canvas is not supported in your browser.
+						</m:canvasgraph><br />
+						Last clicked row: <h:outputText id="test" value="#{indexBacking.value}" />
+					</h:form>
+				
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
