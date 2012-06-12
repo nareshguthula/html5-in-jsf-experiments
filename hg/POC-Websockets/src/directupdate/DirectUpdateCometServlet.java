@@ -90,14 +90,12 @@ public class DirectUpdateCometServlet extends HttpServlet implements DirectUpdat
 	}
 
 	public void sendMessageToAll(String message) {
-		logger.info("Comet start");
 		CometContext<HttpServletResponse> context = CometEngine.getEngine().getCometContext(contextPath);
 		try {
 			context.notify(message);
 		} catch (IOException e) {
 			logger.log(Level.WARNING, "sendMessageToAll", e);
 		}
-		logger.info("Comet end");
 	}
 	
 	private String readStream(InputStream stream) throws IOException {

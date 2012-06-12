@@ -35,7 +35,7 @@ public class DirectUpdateWebSocketApplication extends WebSocketApplication imple
 	@Override
 	public void onMessage(WebSocket socket, String text) {
 		try {
-			logger.info("Received: " + text);		
+			logger.fine("Received: " + text);		
 			for (DirectUpdateTextMessageListener listener : messageListeners) {
 				listener.onMessage(text);
 			}
@@ -47,7 +47,6 @@ public class DirectUpdateWebSocketApplication extends WebSocketApplication imple
 	
 	@Override
 	public void sendMessageToAll(String messageContent) {
-		logger.log(Level.INFO, "Send message to all start");
 		for(WebSocket socket : getWebSockets()) {
 			try {
 				socket.send(messageContent);
@@ -56,7 +55,6 @@ public class DirectUpdateWebSocketApplication extends WebSocketApplication imple
 				logger.log(Level.FINE, "sendMessageToAll", e);
 			}
 		}
-		logger.log(Level.INFO, "Send message to all end");
 	}
 
 	@Override
